@@ -77,14 +77,37 @@ sampled_crime
 
 
 
+#ggplot
+#Deadline 16 Oct, 2022
+#Statistical Data Science class
+install.packages("ggplot2")
+library(ggplot2)
+Crime_Dataset=wooldridge::crime1
+fdtBlack= table(Crime_Dataset$black)
+fdtBlack = as.data.frame(fdtBlack)
+fdtBlack
 
+colnames(fdtBlack)=c("isBalck", "freq")
+rownames(fdtBlack)=c("No", "Yes")
+fdtBlack
 
+pieG1 = ggplot(fdtBlack, aes(x="", y="freq", fill=isBalck))
+pieG2 = pieG1+geom_col()+ 
+  coord_polar(theta ="y" )+
+  theme_void()+
+  theme(plot.title = element_text(color = "blue" ,size = 10, 
+                                  face ="bold", 
+                                  hjust = .5))+
+  ggtitle('Black Criminals Pie Chart-0=No, 1=Yes-')+
+  geom_text(aes(label = freq),
+    position = position_stack(vjust = .5))+
+  scale_fill_manual(values = c("yellow", "Green"),
+                    labels=c("No","Yes"))+
+  theme(legend.position = "left")
+  
 
-
-
-
-
-
+pieG2
+  
 
 
 
